@@ -1,7 +1,47 @@
+
+
 .card{
-    
     border: 1px solid #000000;
-    background-color: #81f1d9;
-    width: 268px;
-    height: 474px;
+    background-color: #ffffff;
+    width: 240px;
+    height:500px;
 }
+.star{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 20%;
+    font-size: 1%;
+
+}
+.image{
+    display: flex;
+    font-size: 10px;
+    justify-content: center;
+}
+.description{
+    font-size: 15px;
+}
+.desconto{
+    
+    
+}    
+.div1{
+
+    color: #000000;
+}
+.price{
+    display: flex;
+   
+    color: #ff7b00;
+}
+.parcelamento{
+    font-size: 15px;
+    color: #ffffff;
+    justify-content: end;
+    border: 2px solid ;
+    border-radius: 10px;
+    background-color: #ff7b00;
+}
+    
+
