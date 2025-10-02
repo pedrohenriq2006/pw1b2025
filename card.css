@@ -1,12 +1,19 @@
 
 
+
+body{
+    display: flex;
+
+}
 .card{
-    border: 1px solid #000000;
+    margin: 2px;
+    border: 1px solid #e9e9e9;
     background-color: #ffffff;
     width: 240px;
     height:500px;
 }
 .star{
+    margin: 0%;
     display: flex;
     justify-content: end;
     width: 100%;
@@ -15,33 +22,70 @@
 
 }
 .image{
+    margin: 4px;
     display: flex;
     font-size: 10px;
     justify-content: center;
 }
 .description{
     font-size: 15px;
+    margin: 10px;
 }
 .desconto{
-    
+    display: flex;
+    margin: 4px;
     
 }    
 .div1{
-
-    color: #000000;
+    margin: 4px;
+    color: #726e6e;
+}
+.div2{
+    justify-content: space-between;
+    margin-left: 23px;
 }
 .price{
     display: flex;
-   
-    color: #ff7b00;
+    color: #fd891d;
+    
+}
+.a{
+
+    font-size: 20px;
+    margin: 4px;
+}
+.e{
+    text-align: center;
+    margin: 4px;
+    background-color: #fd891d;
+    border-radius: 15px;
+    color: #ffffff;
+    
 }
 .parcelamento{
+    margin: 4px;
     font-size: 15px;
-    color: #ffffff;
+    color: #646464;
     justify-content: end;
-    border: 2px solid ;
     border-radius: 10px;
-    background-color: #ff7b00;
+
+}
+.divpar{
+
+}
+button{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #fd891d;
+    color: #ffffff;
+    margin-left: 20px;
+    border-radius: 10px;
+    border: #fd891d;
+    width: 200px;
+    height: 30px;
+    margin-top: 50px;
+    align-items: center;
 }
     
 
