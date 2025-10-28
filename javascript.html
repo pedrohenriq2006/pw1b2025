@@ -83,19 +83,37 @@
 //     document.write( i+" x "+escolha+"="+escolha*i +"<br> ")
 // }
 
-var escolha = prompt("faça sua aposta? pato ganso vaca")
-if (escolha == pato);
+// var escolha = prompt("faça sua aposta? pato ganso vaca")
+// if (escolha == pato);
+//     {
+//         document.write("voce ganhou")
+//     }
+// if (escolha == ganso);
+//     {
+//         document.write("voce perdeu")
+//     }
+// if (escolha == vaca);
+//     {
+//         document.write("voce perdeu")
+//     }    
+
+
+    function numeroaleatorio(numeromaximo)
     {
-        document.write("voce ganhou")
+        var retorno = Math.random()
+        retorno = (retorno*numeromaximo)
+        retorno = Math.floor(retorno)
+        return retorno
+        if(retorno >= numerominimo)
+        {
+            return retorno
+        }else{
+            return numeroaleatorio(numerominimo, numeromaximo)
+        }
     }
-if (escolha == ganso);
-    {
-        document.write("voce perdeu")
-    }
-if (escolha == vaca);
-    {
-        document.write("voce perdeu")
-    }    
+    
+        document.write("<h1>"+ numeroaleatorio(140,150)+"<\h1>")
+
 
 
 
