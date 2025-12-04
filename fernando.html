@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(#7dd0f7, #fff597);
+    }
+
+    main {
+      position: relative;
+      width: 350px;
+    }
+
+    .pokedex {
+      width: 100%;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .pokemon_image {
+      position: absolute;
+      top: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100px;
+      display: none;
+      image-rendering: pixelated;
+    }
+
+    .pokemon_data {
+      position: absolute;
+      top: 290px;
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: rgb(0, 0, 0);  
+    }
+
+    .form {
+      position: absolute;
+      top: 350px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .input__search {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 2px solid #ccc;
+      text-align: center;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 460px;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .button {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: rgb(245, 217, 94);
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: rgb(65, 211, 121);
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <img src="#" alt="pokemon" class="pokemon_image">
+
+    <h1 class="pokemon_data">
+      <span class="pokemon_number"></span>
+      <span class="pokemon_name"></span>
+    </h1>
+
+    <form class="form">
+      <input
+        type="search"
+        class="input__search"
+        placeholder="Name or Number"
+        required
+      />
+    </form>
+
+    <div class="buttons">
+      <button class="button btn-prev">Proximo &lt;</button>
+      <button class="button btn-next">Anterior &gt;</button>
+    </div>
+
+    <img src="imagens/pokedex.png" alt="pokedex" class="pokedex" >
+  </main>
+
+  <script>
+    let searchPokemon = 1;
+
+    const pokemonName = document.querySelector('.pokemon_name');
+    const pokemonNumber = document.querySelector('.pokemon_number');    
+    const pokemonImage = document.querySelector('.pokemon_image');
+
+    const form = document.querySelector('.form');
+    const input = document.querySelector('.input__search');
+    const buttonPrev = document.querySelector('.btn-prev');
+    const buttonNext = document.querySelector('.btn-next');
+
+    const fetchPokemon = async (pokemon) => {
+      const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+
+      if (APIResponse.status === 200) {
+        const data = await APIResponse.json();
+        return data;
+      }
+    };
+
+    const renderPokemon = async (pokemon) => {
+      pokemonName.innerHTML = 'Loading...';
+      pokemonNumber.innerHTML = '';
+
+      const data = await fetchPokemon(pokemon);
+
+      if (data) {
+        pokemonImage.style.display = 'block';
+        pokemonName.innerHTML = data.name;
+        pokemonNumber.innerHTML = `#${data.id}`;
+        pokemonImage.src =
+          data.sprites.versions['generation-v']['black-white'].animated.front_default;
+
+        input.value = '';
+        searchPokemon = data.id;
+      } else {
+        pokemonImage.style.display = 'none';
+        pokemonName.innerHTML = 'Not found :c';
+        pokemonNumber.innerHTML = '';
+      }
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      renderPokemon(input.value.toLowerCase());
+    });
+
+    buttonPrev.addEventListener('click', () => {
+      if (searchPokemon > 1) {
+        searchPokemon -= 1;
+        renderPokemon(searchPokemon);
+      }
+    });
+
+    buttonNext.addEventListener('click', () => {
+      searchPokemon += 1;
+      renderPokemon(searchPokemon);
+    });
+
+    renderPokemon(searchPokemon);
+  </script>
+
+</body>
+</html>
